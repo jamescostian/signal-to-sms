@@ -1,0 +1,4 @@
+*.backup linguist-generated
+*.prototext linguist-generated
+*.sqlite linguist-generated
+*.xml linguist-generated

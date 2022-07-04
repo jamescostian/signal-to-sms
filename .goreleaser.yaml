@@ -1,0 +1,75 @@
+before:
+  hooks:
+    - go mod download
+builds:
+  - id: apple-silicon
+    goos:
+      - darwin
+    goarch:
+      - arm64
+    env:
+      - CGO_ENABLED=1
+      - CC=/home/runner/work/osxcross/target/bin/oa64-clang
+      - CXX=/home/runner/work/osxcross/target/bin/oa64-clang++
+    flags:
+      - --tags=darwin
+    mod_timestamp: "{{ .CommitTimestamp }}"
+  - id: apple-x64
+    goos:
+      - darwin
+    goarch:
+      - amd64
+    env:
+      - CGO_ENABLED=1
+      - CC=/home/runner/work/osxcross/target/bin/o64-clang
+      - CXX=/home/runner/work/osxcross/target/bin/o64-clang++
+    flags:
+      - --tags=darwin
+    mod_timestamp: "{{ .CommitTimestamp }}"
+  - id: linux-x64
+    goos:
+      - linux
+    goarch:
+      - amd64
+    env:
+      - CGO_ENABLED=1
+    flags:
+      - --tags=linux
+    mod_timestamp: "{{ .CommitTimestamp }}"
+  - id: windows-x64
+    goos:
+      - windows
+    goarch:
+      - amd64
+    env:
+      - CGO_ENABLED=1
+      - CXX=x86_64-w64-mingw32-g++
+      - CC=x86_64-w64-mingw32-gcc
+    mod_timestamp: "{{ .CommitTimestamp }}"
+archives:
+  - name_template: '{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}-{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
+    replacements:
+      darwin: macOS
+      amd64: x64
+    format_overrides:
+      - goos: windows
+        format: zip
+release:
+  prerelease: auto
+brews:
+  - tap:
+      owner: jamescostian
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_GITHUB_TOKEN }}"
+    commit_author:
+      name: James Costian
+      email: james@jamescostian.com
+    commit_msg_template: "Update {{ .ProjectName }} formula to {{ .Tag }}"
+    folder: Formula
+    homepage: "https://github.com/jamescostian/signal-to-sms"
+    description: Decrypt and convert Signal for Android backups so they can be restored as SMSes that can be moved to iMessage on iPhones. NOT AFFILIATED WITH OR OFFICIALLY BLESSED BY SIGNAL.
+    license: GPL-3.0-only
+    dependencies:
+      - name: sqlite
+    test: system "#{bin}/signal-to-sms -v"
+    install: bin.install "signal-to-sms"

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<smses count="4">
+	<sms protocol="0" address="+16186258313" date="1641013200000" type="2" subject="null" body="Test" read="1" status="-1" date_sent="1641013200000"></sms>
+	<sms protocol="0" address="+16186258313" date="1641013200004" type="1" subject="null" body="Sorry, this service is not available." service_center="+11111122222" read="0" status="-1" date_sent="1641013200004"></sms>
+	<mms text_only="0" sub="null" retr_st="null" date="1641013200001" ct_cls="null" sub_cs="106" read="1" ct_l="null" tr_id="null" st="null" msg_box="2" address="+16186258313" m_cls="personal" d_tm="null" read_status="null" ct_t="application/vnd.wap.multipart.related" retr_txt_cs="null" d_rpt="129" m_id="null" date_sent="1641013200" seen="1" m_type="128" v="18" exp="null" pri="129" rr="129" resp_txt="null" rpt_a="null" locked="0" retr_txt="null" resp_st="128" m_size="254273">
+		<parts>
+			<part seq="0" ct="image/jpeg" name="1.jpg" chset="106" cd="CP9l9KPPfalOntnIPlKWyFlMiJiVAaZ0wfpT3Mk9y0hV1o7u9ymHa1HYyYhjbD1UoneslPRACg96t3UVaUJAIw==" fn="null" cid="null" cl="00000000000000000000" ctt_s="null" ctt_t="null" text="null" data="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGD4DwABBAEAfbLI3wAAAABJRU5ErkJggg=="></part>
+		</parts>
+		<addrs>
+			<addr address="+16186258313" type="151" charset="106"></addr>
+			<addr address="6054756968" type="137" charset="106"></addr>
+		</addrs>
+	</mms>
+	<mms text_only="1" sub="null" retr_st="null" date="1641013200003" ct_cls="null" sub_cs="106" read="1" ct_l="null" tr_id="null" st="null" msg_box="2" address="+16186258313~40404" m_cls="personal" d_tm="null" read_status="null" ct_t="application/vnd.wap.multipart.related" retr_txt_cs="null" d_rpt="129" m_id="null" date_sent="1641013200" seen="1" m_type="128" v="18" exp="null" pri="129" rr="129" resp_txt="null" rpt_a="null" locked="0" retr_txt="null" resp_st="128" m_size="1">
+		<parts>
+			<part seq="0" ct="text/plain" name="null" chset="106" cd="null" fn="null" cid="null" cl="txt000003.txt" ctt_s="null" ctt_t="null" text="?"></part>
+		</parts>
+		<addrs>
+			<addr address="+16054756968" type="137" charset="106"></addr>
+			<addr address="+16186258313" type="151" charset="106"></addr>
+			<addr address="40404" type="151" charset="106"></addr>
+		</addrs>
+	</mms>
+</smses>

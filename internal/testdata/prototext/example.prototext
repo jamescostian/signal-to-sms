@@ -1,0 +1,6675 @@
+frames: {
+  version: {
+    version: 146
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE sms (_id INTEGER PRIMARY KEY AUTOINCREMENT, thread_id INTEGER, address INTEGER, address_device_id INTEGER DEFAULT 1, person INTEGER, date INTEGER, date_sent INTEGER, date_server INTEGER DEFAULT -1, protocol INTEGER, read INTEGER DEFAULT 0, status INTEGER DEFAULT -1,type INTEGER, reply_path_present INTEGER, delivery_receipt_count INTEGER DEFAULT 0,subject TEXT, body TEXT, mismatched_identities TEXT DEFAULT NULL, service_center TEXT, subscription_id INTEGER DEFAULT -1, expires_in INTEGER DEFAULT 0, expire_started INTEGER DEFAULT 0, notified DEFAULT 0, read_receipt_count INTEGER DEFAULT 0, unidentified INTEGER DEFAULT 0, reactions BLOB DEFAULT NULL, reactions_unread INTEGER DEFAULT 0, reactions_last_seen INTEGER DEFAULT -1, remote_deleted INTEGER DEFAULT 0, notified_timestamp INTEGER DEFAULT 0,server_guid TEXT DEFAULT NULL, receipt_timestamp INTEGER DEFAULT -1)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE sqlite_sequence(name,seq)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE mms (_id INTEGER PRIMARY KEY AUTOINCREMENT, thread_id INTEGER, date INTEGER, date_received INTEGER, date_server INTEGER DEFAULT -1, msg_box INTEGER, read INTEGER DEFAULT 0, body TEXT, part_count INTEGER, ct_l TEXT, address INTEGER, address_device_id INTEGER, exp INTEGER, m_type INTEGER, m_size INTEGER, st INTEGER, tr_id TEXT, delivery_receipt_count INTEGER DEFAULT 0, mismatched_identities TEXT DEFAULT NULL, network_failures TEXT DEFAULT NULL,subscription_id INTEGER DEFAULT -1, expires_in INTEGER DEFAULT 0, expire_started INTEGER DEFAULT 0, notified INTEGER DEFAULT 0, read_receipt_count INTEGER DEFAULT 0, quote_id INTEGER DEFAULT 0, quote_author TEXT, quote_body TEXT, quote_attachment INTEGER DEFAULT -1, quote_missing INTEGER DEFAULT 0, quote_mentions BLOB DEFAULT NULL,shared_contacts TEXT, unidentified INTEGER DEFAULT 0, previews TEXT, reveal_duration INTEGER DEFAULT 0, reactions BLOB DEFAULT NULL, reactions_unread INTEGER DEFAULT 0, reactions_last_seen INTEGER DEFAULT -1, remote_deleted INTEGER DEFAULT 0, mentions_self INTEGER DEFAULT 0, notified_timestamp INTEGER DEFAULT 0, viewed_receipt_count INTEGER DEFAULT 0, server_guid TEXT DEFAULT NULL, receipt_timestamp INTEGER DEFAULT -1, ranges BLOB DEFAULT NULL, is_story INTEGER DEFAULT 0, parent_story_id INTEGER DEFAULT 0, quote_type INTEGER DEFAULT 0)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE part (_id INTEGER PRIMARY KEY, mid INTEGER, seq INTEGER DEFAULT 0, ct TEXT, name TEXT, chset INTEGER, cd TEXT, fn TEXT, cid TEXT, cl TEXT, ctt_s INTEGER, ctt_t TEXT, encrypted INTEGER, pending_push INTEGER, _data TEXT, data_size INTEGER, file_name TEXT, unique_id INTEGER NOT NULL, digest BLOB, fast_preflight_id TEXT, voice_note INTEGER DEFAULT 0, borderless INTEGER DEFAULT 0, video_gif INTEGER DEFAULT 0, data_random BLOB, quote INTEGER DEFAULT 0, width INTEGER DEFAULT 0, height INTEGER DEFAULT 0, caption TEXT DEFAULT NULL, sticker_pack_id TEXT DEFAULT NULL, sticker_pack_key DEFAULT NULL, sticker_id INTEGER DEFAULT -1, sticker_emoji STRING DEFAULT NULL, data_hash TEXT DEFAULT NULL, blur_hash TEXT DEFAULT NULL, transform_properties TEXT DEFAULT NULL, transfer_file TEXT DEFAULT NULL, display_order INTEGER DEFAULT 0, upload_timestamp INTEGER DEFAULT 0, cdn_number INTEGER DEFAULT 0)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE thread (_id INTEGER PRIMARY KEY AUTOINCREMENT, date INTEGER DEFAULT 0, message_count INTEGER DEFAULT 0, thread_recipient_id INTEGER, snippet TEXT, snippet_charset INTEGER DEFAULT 0, read INTEGER DEFAULT 1, type INTEGER DEFAULT 0, error INTEGER DEFAULT 0, snippet_type INTEGER DEFAULT 0, snippet_uri TEXT DEFAULT NULL, snippet_content_type TEXT DEFAULT NULL, snippet_extras TEXT DEFAULT NULL, archived INTEGER DEFAULT 0, status INTEGER DEFAULT 0, delivery_receipt_count INTEGER DEFAULT 0, expires_in INTEGER DEFAULT 0, last_seen INTEGER DEFAULT 0, has_sent INTEGER DEFAULT 0, read_receipt_count INTEGER DEFAULT 0, unread_count INTEGER DEFAULT 0, last_scrolled INTEGER DEFAULT 0, pinned INTEGER DEFAULT 0)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE drafts (_id INTEGER PRIMARY KEY, thread_id INTEGER, type TEXT, value TEXT)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE push (_id INTEGER PRIMARY KEY, type INTEGER, source TEXT, source_uuid TEXT, device_id INTEGER, body TEXT, content TEXT, timestamp INTEGER, server_timestamp INTEGER DEFAULT 0, server_delivered_timestamp INTEGER DEFAULT 0, server_guid TEXT DEFAULT NULL)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE groups (_id INTEGER PRIMARY KEY, group_id TEXT, recipient_id INTEGER, title TEXT, members TEXT, avatar_id INTEGER, avatar_key BLOB, avatar_content_type TEXT, avatar_relay TEXT, timestamp INTEGER, active INTEGER DEFAULT 1, avatar_digest BLOB, mms INTEGER DEFAULT 0, master_key BLOB, revision BLOB, decrypted_group BLOB, expected_v2_id TEXT DEFAULT NULL, former_v1_members TEXT DEFAULT NULL, distribution_id TEXT DEFAULT NULL, display_as_story INTEGER DEFAULT 0, auth_service_id TEXT DEFAULT NULL)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE recipient (_id INTEGER PRIMARY KEY AUTOINCREMENT, uuid TEXT UNIQUE DEFAULT NULL, username TEXT UNIQUE DEFAULT NULL, phone TEXT UNIQUE DEFAULT NULL, email TEXT UNIQUE DEFAULT NULL, group_id TEXT UNIQUE DEFAULT NULL, group_type INTEGER DEFAULT 0, blocked INTEGER DEFAULT 0,message_ringtone TEXT DEFAULT NULL, message_vibrate INTEGER DEFAULT 0, call_ringtone TEXT DEFAULT NULL, call_vibrate INTEGER DEFAULT 0, notification_channel TEXT DEFAULT NULL, mute_until INTEGER DEFAULT 0, color TEXT DEFAULT NULL, seen_invite_reminder INTEGER DEFAULT 0, default_subscription_id INTEGER DEFAULT -1, message_expiration_time INTEGER DEFAULT 0, registered INTEGER DEFAULT 0, system_given_name TEXT DEFAULT NULL, system_family_name TEXT DEFAULT NULL, system_display_name TEXT DEFAULT NULL, system_photo_uri TEXT DEFAULT NULL, system_phone_label TEXT DEFAULT NULL, system_phone_type INTEGER DEFAULT -1, system_contact_uri TEXT DEFAULT NULL, system_info_pending INTEGER DEFAULT 0, profile_key TEXT DEFAULT NULL, profile_key_credential TEXT DEFAULT NULL, signal_profile_name TEXT DEFAULT NULL, profile_family_name TEXT DEFAULT NULL, profile_joined_name TEXT DEFAULT NULL, signal_profile_avatar TEXT DEFAULT NULL, profile_sharing INTEGER DEFAULT 0, last_profile_fetch INTEGER DEFAULT 0, unidentified_access_mode INTEGER DEFAULT 0, force_sms_selection INTEGER DEFAULT 0, storage_service_key TEXT UNIQUE DEFAULT NULL, mention_setting INTEGER DEFAULT 0, storage_proto TEXT DEFAULT NULL, capabilities INTEGER DEFAULT 0, last_session_reset BLOB DEFAULT NULL, wallpaper BLOB DEFAULT NULL, wallpaper_file TEXT DEFAULT NULL, about TEXT DEFAULT NULL, about_emoji TEXT DEFAULT NULL, extras BLOB DEFAULT NULL, groups_in_common INTEGER DEFAULT 0, chat_colors BLOB DEFAULT NULL, custom_chat_colors_id INTEGER DEFAULT 0, badges BLOB DEFAULT NULL, pni TEXT DEFAULT NULL, distribution_list_id INTEGER DEFAULT NULL)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE group_receipts (_id INTEGER PRIMARY KEY, mms_id INTEGER, address INTEGER, status INTEGER, timestamp INTEGER, unidentified INTEGER DEFAULT 0)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE sender_key_shared(_id INTEGER PRIMARY KEY AUTOINCREMENT, distribution_id TEXT NOT NULL, address TEXT NOT NULL, device INTEGER NOT NULL, timestamp INTEGER DEFAULT 0, UNIQUE(distribution_id,address, device) ON CONFLICT REPLACE)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE pending_retry_receipts(_id INTEGER PRIMARY KEY AUTOINCREMENT, author TEXT NOT NULL, device INTEGER NOT NULL, sent_timestamp INTEGER NOT NULL, received_timestamp TEXT NOT NULL, thread_id INTEGER NOT NULL, UNIQUE(author,sent_timestamp) ON CONFLICT REPLACE)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE sticker (_id INTEGER PRIMARY KEY AUTOINCREMENT, pack_id TEXT NOT NULL, pack_key TEXT NOT NULL, pack_title TEXT NOT NULL, pack_author TEXT NOT NULL, sticker_id INTEGER, cover INTEGER, pack_order INTEGER, emoji TEXT NOT NULL, content_type TEXT DEFAULT NULL, last_used INTEGER, installed INTEGER,file_path TEXT NOT NULL, file_length INTEGER, file_random BLOB, UNIQUE(pack_id, sticker_id, cover) ON CONFLICT IGNORE)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE storage_key (_id INTEGER PRIMARY KEY AUTOINCREMENT, type INTEGER, key TEXT UNIQUE)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE mention(_id INTEGER PRIMARY KEY AUTOINCREMENT, thread_id INTEGER, message_id INTEGER, recipient_id INTEGER, range_start INTEGER, range_length INTEGER)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE payments(_id INTEGER PRIMARY KEY, uuid TEXT DEFAULT NULL, recipient INTEGER DEFAULT 0, recipient_address TEXT DEFAULT NULL, timestamp INTEGER, note TEXT DEFAULT NULL, direction INTEGER, state INTEGER, failure_reason INTEGER, amount BLOB NOT NULL, fee BLOB NOT NULL, transaction_record BLOB DEFAULT NULL, receipt BLOB DEFAULT NULL, payment_metadata BLOB DEFAULT NULL, receipt_public_key TEXT DEFAULT NULL, block_index INTEGER DEFAULT 0, block_timestamp INTEGER DEFAULT 0, seen INTEGER, UNIQUE(uuid) ON CONFLICT ABORT)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE chat_colors (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT,\n  chat_colors BLOB\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE VIRTUAL TABLE emoji_search USING fts5(label, emoji UNINDEXED)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE avatar_picker (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT,\n  last_used INTEGER DEFAULT 0,\n  group_id TEXT DEFAULT NULL,\n  avatar BLOB NOT NULL\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE VIRTUAL TABLE sms_fts USING fts5(body, thread_id UNINDEXED, content=sms, content_rowid=_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER sms_ai AFTER INSERT ON sms BEGIN\n  INSERT INTO sms_fts(rowid, body, thread_id) VALUES (new._id, new.body, new.thread_id);\nEND"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER sms_ad AFTER DELETE ON sms BEGIN\n  INSERT INTO sms_fts(sms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id);\nEND"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER sms_au AFTER UPDATE ON sms BEGIN\n  INSERT INTO sms_fts(sms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id);\n  INSERT INTO sms_fts(rowid, body, thread_id) VALUES(new._id, new.body, new.thread_id);\nEND"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE VIRTUAL TABLE mms_fts USING fts5(body, thread_id UNINDEXED, content=mms, content_rowid=_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER mms_ai AFTER INSERT ON mms BEGIN\n  INSERT INTO mms_fts(rowid, body, thread_id) VALUES (new._id, new.body, new.thread_id);\nEND"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER mms_ad AFTER DELETE ON mms BEGIN\n  INSERT INTO mms_fts(mms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id);\nEND"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER mms_au AFTER UPDATE ON mms BEGIN\n  INSERT INTO mms_fts(mms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id);\n  INSERT INTO mms_fts(rowid, body, thread_id) VALUES (new._id, new.body, new.thread_id);\nEND"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE remapped_recipients (_id INTEGER PRIMARY KEY AUTOINCREMENT, old_id INTEGER UNIQUE, new_id INTEGER)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE remapped_threads (_id INTEGER PRIMARY KEY AUTOINCREMENT, old_id INTEGER UNIQUE, new_id INTEGER)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE msl_payload (\n        _id INTEGER PRIMARY KEY,\n        date_sent INTEGER NOT NULL,\n        content BLOB NOT NULL,\n        content_hint INTEGER NOT NULL\n      )"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE msl_recipient (\n        _id INTEGER PRIMARY KEY,\n        payload_id INTEGER NOT NULL REFERENCES msl_payload (_id) ON DELETE CASCADE,\n        recipient_id INTEGER NOT NULL, \n        device INTEGER NOT NULL\n      )"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE msl_message (\n        _id INTEGER PRIMARY KEY,\n        payload_id INTEGER NOT NULL REFERENCES msl_payload (_id) ON DELETE CASCADE,\n        message_id INTEGER NOT NULL, \n        is_mms INTEGER NOT NULL\n      )"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX recipient_group_type_index ON recipient (group_type)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX sms_read_and_notified_and_thread_id_index ON sms(read,notified,thread_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX sms_type_index ON sms (type)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX sms_date_sent_index ON sms (date_sent, address, thread_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX sms_date_server_index ON sms (date_server)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX sms_thread_date_index ON sms (thread_id, date)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX sms_reactions_unread_index ON sms (reactions_unread)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_read_and_notified_and_thread_id_index ON mms(read,notified,thread_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_message_box_index ON mms (msg_box)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_date_sent_index ON mms (date, address, thread_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_date_server_index ON mms (date_server)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_thread_date_index ON mms (thread_id, date_received)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_reactions_unread_index ON mms (reactions_unread)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX part_mms_id_index ON part (mid)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX pending_push_index ON part (pending_push)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX part_sticker_pack_id_index ON part (sticker_pack_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX part_data_hash_index ON part (data_hash)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX part_data_index ON part (_data)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX thread_recipient_id_index ON thread (thread_recipient_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX archived_count_index ON thread (archived, message_count)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX thread_pinned_index ON thread (pinned)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX draft_thread_index ON drafts (thread_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE UNIQUE INDEX group_id_index ON groups (group_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE UNIQUE INDEX group_recipient_id_index ON groups (recipient_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE UNIQUE INDEX expected_v2_id_index ON groups (expected_v2_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE UNIQUE INDEX group_distribution_id_index ON groups(distribution_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX group_receipt_mms_id_index ON group_receipts (mms_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX sticker_pack_id_index ON sticker (pack_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX sticker_sticker_id_index ON sticker (sticker_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX storage_key_type_index ON storage_key (type)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mention_message_id_index ON mention (message_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mention_recipient_id_thread_id_index ON mention (recipient_id, thread_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX timestamp_direction_index ON payments (timestamp, direction)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX timestamp_index ON payments (timestamp)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE UNIQUE INDEX receipt_public_key_index ON payments (receipt_public_key)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX msl_payload_date_sent_index ON msl_payload (date_sent)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX msl_recipient_recipient_index ON msl_recipient (recipient_id, device, payload_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX msl_recipient_payload_index ON msl_recipient (payload_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX msl_message_message_index ON msl_message (message_id, is_mms, payload_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER msl_sms_delete AFTER DELETE ON sms \n        BEGIN \n        \tDELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old._id AND is_mms = 0);\n        END"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER msl_mms_delete AFTER DELETE ON mms \n        BEGIN \n        \tDELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old._id AND is_mms = 1);\n        END"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER msl_attachment_delete AFTER DELETE ON part\n        BEGIN\n        \tDELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old.mid AND is_mms = 1);\n        END"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE \"identities\" (_id INTEGER PRIMARY KEY AUTOINCREMENT, address TEXT UNIQUE NOT NULL, identity_key TEXT, first_use INTEGER DEFAULT 0, timestamp INTEGER DEFAULT 0, verified INTEGER DEFAULT 0, nonblocking_approval INTEGER DEFAULT 0)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE group_call_ring (_id INTEGER PRIMARY KEY, ring_id INTEGER UNIQUE, date_received INTEGER, ring_state INTEGER)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX date_received_index on group_call_ring (date_received)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE \"sender_keys\" (_id INTEGER PRIMARY KEY AUTOINCREMENT, address TEXT NOT NULL, device INTEGER NOT NULL, distribution_id TEXT NOT NULL, record BLOB NOT NULL, created_at INTEGER NOT NULL, UNIQUE(address, device, distribution_id) ON CONFLICT REPLACE)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE reaction (\n  _id INTEGER PRIMARY KEY,\n  message_id INTEGER NOT NULL,\n  is_mms INTEGER NOT NULL,\n  author_id INTEGER NOT NULL REFERENCES recipient (_id) ON DELETE CASCADE,\n  emoji TEXT NOT NULL,\n  date_sent INTEGER NOT NULL,\n  date_received INTEGER NOT NULL,\n  UNIQUE(message_id, is_mms, author_id) ON CONFLICT REPLACE\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER reactions_sms_delete AFTER DELETE ON sms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 0; END"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE UNIQUE INDEX recipient_pni_index ON recipient (pni)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE notification_profile (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT, \n  name TEXT NOT NULL UNIQUE,\n  emoji TEXT NOT NULL,\n  color TEXT NOT NULL,\n  created_at INTEGER NOT NULL,\n  allow_all_calls INTEGER NOT NULL DEFAULT 0,\n  allow_all_mentions INTEGER NOT NULL DEFAULT 0\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE notification_profile_schedule (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT,\n  notification_profile_id INTEGER NOT NULL REFERENCES notification_profile (_id) ON DELETE CASCADE,\n  enabled INTEGER NOT NULL DEFAULT 0,\n  start INTEGER NOT NULL,\n  end INTEGER NOT NULL,\n  days_enabled TEXT NOT NULL\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE notification_profile_allowed_members (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT,\n  notification_profile_id INTEGER NOT NULL REFERENCES notification_profile (_id) ON DELETE CASCADE,\n  recipient_id INTEGER NOT NULL,\n  UNIQUE(notification_profile_id, recipient_id) ON CONFLICT REPLACE)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX notification_profile_schedule_profile_index ON notification_profile_schedule (notification_profile_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX notification_profile_allowed_members_profile_index ON notification_profile_allowed_members (notification_profile_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TRIGGER reactions_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 1; END"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE \"one_time_prekeys\" (\n  _id INTEGER PRIMARY KEY,\n  account_id TEXT NOT NULL,\n  key_id INTEGER,\n  public_key TEXT NOT NULL,\n  private_key TEXT NOT NULL,\n  UNIQUE(account_id, key_id)\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE \"signed_prekeys\" (\n  _id INTEGER PRIMARY KEY,\n  account_id TEXT NOT NULL,\n  key_id INTEGER,\n  public_key TEXT NOT NULL,\n  private_key TEXT NOT NULL,\n  signature TEXT NOT NULL,\n  timestamp INTEGER DEFAULT 0,\n  UNIQUE(account_id, key_id)\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE \"sessions\" (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT,\n  account_id TEXT NOT NULL,\n  address TEXT NOT NULL,\n  device INTEGER NOT NULL,\n  record BLOB NOT NULL,\n  UNIQUE(account_id, address, device)\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE donation_receipt (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT,\n  receipt_type TEXT NOT NULL,\n  receipt_date INTEGER NOT NULL,\n  amount TEXT NOT NULL,\n  currency TEXT NOT NULL,\n  subscription_level INTEGER NOT NULL\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX donation_receipt_type_index ON donation_receipt (receipt_type)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX donation_receipt_date_index ON donation_receipt (receipt_date)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_is_story_index ON mms (is_story)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_parent_story_id_index ON mms (parent_story_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE distribution_list (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT,\n  name TEXT UNIQUE NOT NULL,\n  distribution_id TEXT UNIQUE NOT NULL,\n  recipient_id INTEGER UNIQUE REFERENCES recipient (_id) ON DELETE CASCADE\n, allows_replies INTEGER DEFAULT 1, deletion_timestamp INTEGER DEFAULT 0, is_unknown INTEGER DEFAULT 0)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE distribution_list_member (\n  _id INTEGER PRIMARY KEY AUTOINCREMENT,\n  list_id INTEGER NOT NULL REFERENCES distribution_list (_id) ON DELETE CASCADE,\n  recipient_id INTEGER NOT NULL,\n  UNIQUE(list_id, recipient_id) ON CONFLICT IGNORE\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX mms_thread_story_parent_story_index ON mms (thread_id, date_received, is_story, parent_story_id)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX recipient_service_id_profile_key ON recipient (uuid, profile_key) WHERE uuid NOT NULL AND profile_key NOT NULL"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE cds (\n          _id INTEGER PRIMARY KEY,\n          e164 TEXT NOT NULL UNIQUE ON CONFLICT IGNORE,\n          last_seen_at INTEGER DEFAULT 0\n        )"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE \"story_sends\" (\n  _id INTEGER PRIMARY KEY,\n  message_id INTEGER NOT NULL REFERENCES mms (_id) ON DELETE CASCADE,\n  recipient_id INTEGER NOT NULL REFERENCES recipient (_id) ON DELETE CASCADE,\n  sent_timestamp INTEGER NOT NULL,\n  allows_replies INTEGER NOT NULL,\n  distribution_id TEXT NOT NULL REFERENCES distribution_list (distribution_id) ON DELETE CASCADE\n)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE INDEX story_sends_recipient_id_sent_timestamp_allows_replies_index ON story_sends (recipient_id, sent_timestamp, allows_replies)"
+  }
+}
+frames: {
+  statement: {
+    statement: "CREATE TABLE remote_megaphone (\n            _id INTEGER PRIMARY KEY,\n            uuid TEXT UNIQUE NOT NULL,\n            priority INTEGER NOT NULL,\n            countries TEXT,\n            minimum_version INTEGER NOT NULL,\n            dont_show_before INTEGER NOT NULL,\n            dont_show_after INTEGER NOT NULL,\n            show_for_days INTEGER NOT NULL,\n            conditional_id TEXT,\n            primary_action_id TEXT,\n            secondary_action_id TEXT,\n            image_url TEXT,\n            image_uri TEXT DEFAULT NULL,\n            title TEXT NOT NULL,\n            body TEXT NOT NULL,\n            primary_action_text TEXT,\n            secondary_action_text TEXT,\n            shown_at INTEGER DEFAULT 0,\n            finished_at INTEGER DEFAULT 0\n          )"
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sms VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1641013200000
+    }
+    parameters: {
+      integerParameter: 1641013200000
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 10485783
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "Test"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sms VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 4
+    }
+    parameters: {
+      integerParameter: 5
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1641013200004
+    }
+    parameters: {
+      integerParameter: 1641013200004
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 31337
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 20
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "Sorry, this service is not available."
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "+11111122222"
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1641013200004
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1641013200004
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO mms VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1641013200000
+    }
+    parameters: {
+      integerParameter: 1641013200001
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 10485783
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 128
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO mms VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      integerParameter: 4
+    }
+    parameters: {
+      integerParameter: 1641013200002
+    }
+    parameters: {
+      integerParameter: 1641013200003
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 87
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "?"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 304
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 128
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO part VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "image/jpeg"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "CP9l9KPPfalOntnIPlKWyFlMiJiVAaZ0wfpT3Mk9y0hV1o7u9ymHa1HYyYhjbD1UoneslPRACg96t3UVaUJAIw=="
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "00000000000000000000"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_parts/part000000000000000000.mms"
+    }
+    parameters: {
+      integerParameter: 254273
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1641013200000
+    }
+    parameters: {
+      blobParameter: "00000000000000000000000000000000"
+    }
+    parameters: {
+      stringParamter: "-1000000000000000000"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      blobParameter: "00000000000000000000000000000000"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1095
+    }
+    parameters: {
+      integerParameter: 2048
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "00000000000000000000000000000000000000000000"
+    }
+    parameters: {
+      stringParamter: "0000000000000000000000000000"
+    }
+    parameters: {
+      stringParamter: "{\"skipTransform\":true,\"videoTrim\":false,\"videoTrimStartTimeUs\":0,\"videoTrimEndTimeUs\":0,\"sentMediaQuality\":0,\"videoEdited\":false}"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1641013199999
+    }
+    parameters: {
+      integerParameter: 2
+    }
+  }
+}
+frames: {
+  attachment: {
+    rowId: 1
+    attachmentId: 1641013199998
+    length: 70
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO thread VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1641013200000
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      stringParamter: "📷 Photo"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 10485783
+    }
+    parameters: {
+      stringParamter: "content://org.thoughtcrime.securesms/part/1641013199998/1"
+    }
+    parameters: {
+      stringParamter: "image/jpeg"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1641013200001
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO thread VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 4
+    }
+    parameters: {
+      integerParameter: 1641013200002
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 304
+    }
+    parameters: {
+      stringParamter: "?"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 87
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "{\"isRevealable\":false,\"isSticker\":false,\"stickerEmoji\":null,\"isAlbum\":false,\"isRemoteDelete\":false,\"isMessageRequestAccepted\":true,\"isGv2Invite\":false,\"groupAddedBy\":null,\"individualRecipientId\":\"304\",\"album\":false,\"gv2Invite\":false,\"messageRequestAccepted\":true,\"remoteDelete\":false,\"sticker\":false,\"viewOnce\":false}"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1641013200003
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO thread VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 5
+    }
+    parameters: {
+      integerParameter: 1641013200004
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      stringParamter: "Sorry, this service is not available."
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 20
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO groups VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      stringParamter: "__signal_mms_group__!00000000000000000000000000000000"
+    }
+    parameters: {
+      integerParameter: 304
+    }
+    parameters: {
+      stringParamter: "Test"
+    }
+    parameters: {
+      stringParamter: "1,2,3"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1641013200000
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO recipient VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "756d9b45-5485-45f0-b629-e7814ee58db8"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "+16054756968"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "A120"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "Rejection"
+    }
+    parameters: {
+      stringParamter: "Hotline"
+    }
+    parameters: {
+      stringParamter: "Rejection Phone Hotline"
+    }
+    parameters: {
+      stringParamter: "content://com.android.contacts/contacts/294/photo"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 7
+    }
+    parameters: {
+      stringParamter: "content://com.android.contacts/contacts/lookup/00000000000000000000.00000000000000000000000000000000000000000000000/1852"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "wHROqAgVVeIaVKoNRyxz0az0Qza4MyXFsRvtus2UFWM="
+    }
+    parameters: {
+      stringParamter: "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000wHROqAgVVeIaVKoNRyxz0az0Qza4MyXFsRvtus2UFWM="
+    }
+    parameters: {
+      stringParamter: "Rejection"
+    }
+    parameters: {
+      stringParamter: "Hotline"
+    }
+    parameters: {
+      stringParamter: "Rejection Hotline"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "000000000000000000000000"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 85
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "95583f86-101e-48c6-94cb-add3907efc76"
+    }
+    parameters: {
+      nullparameter: true
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO recipient VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      stringParamter: "95e04140-2304-4cf0-9f80-bc056522c9e2"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "+16186258313"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "A110"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "Stranger"
+    }
+    parameters: {
+      stringParamter: "Things"
+    }
+    parameters: {
+      stringParamter: "Stranger Things"
+    }
+    parameters: {
+      stringParamter: "content://com.android.contacts/contacts/300/photo"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      stringParamter: "content://com.android.contacts/contacts/lookup/00000000000000000000.000000000000000000000000000000000000000000.0000000000000000000000000000000000000000000/1751"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "EK7LjYhdzu+5QmZ86douuyKCvYoTAjuXeT1NDEdHElI="
+    }
+    parameters: {
+      stringParamter: "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000EK7LjYhdzu+5QmZ86douuyKCvYoTAjuXeT1NDEdHElI="
+    }
+    parameters: {
+      stringParamter: "Stranger"
+    }
+    parameters: {
+      stringParamter: "Things"
+    }
+    parameters: {
+      stringParamter: "Stranger Things"
+    }
+    parameters: {
+      stringParamter: "profiles/0000000000000000000000"
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1630855136603
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "000000000000000000000001"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 101
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO recipient VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "40404"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "A170"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "Twitter"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      stringParamter: "Twitter"
+    }
+    parameters: {
+      stringParamter: "content://com.android.contacts/contacts/38/photo"
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 7
+    }
+    parameters: {
+      stringParamter: "content://com.android.contacts/contacts/lookup/524i6642408790850dfe/242"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO recipient VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 291
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 9223372036854775807
+    }
+    parameters: {
+      stringParamter: "A110"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 18446744073709551615
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "Signal"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      stringParamter: "Signal"
+    }
+    parameters: {
+      stringParamter: "local"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      nullparameter: true
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO group_receipts VALUES (?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1641013200003
+    }
+    parameters: {
+      integerParameter: 0
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO group_receipts VALUES (?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1641013200003
+    }
+    parameters: {
+      integerParameter: 0
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 25
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7108760378106207056.mms"
+    }
+    parameters: {
+      integerParameter: 23072
+    }
+    parameters: {
+      blobParameter: "}*\xd96\t\xb1\"\x8a9O\x15\x12V\xa9\x9b>\xcf\r\xe5Ť]\x14\\\xce\x19RZ*b\x1b\xfa"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 1
+    length: 23072
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      stringParamter: "e61fa0867031597467ccc036cc65d403"
+    }
+    parameters: {
+      stringParamter: "13ae7b1a7407318280e9b38c1261ded38e0e7138b9f964a6ccbb73e40f737a9b"
+    }
+    parameters: {
+      stringParamter: "Swoon / Hands"
+    }
+    parameters: {
+      stringParamter: "Swoon"
+    }
+    parameters: {
+      integerParameter: 29
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8711968975359021045.mms"
+    }
+    parameters: {
+      integerParameter: 58910
+    }
+    parameters: {
+      blobParameter: "ʦ2kd\x86O'\x84\x7f\x9f\x85\x91\xb5,\xdf\x12t\xa2<e\xd8\xc9܋<\xab\xdex\xdc<\xf1"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 2
+    length: 58910
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 8
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤬"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5179669599156732716.mms"
+    }
+    parameters: {
+      integerParameter: 23548
+    }
+    parameters: {
+      blobParameter: "\x07\x1d\xf3\xd5Һ\x0c\x98\xb3\xa7\xbd07E\xee\x10\xa6lN\x7f\x82\xb4R\x02m\xf7!D\x1e+M\\"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 3
+    length: 23548
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 4
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 9
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🎂"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker837157433634128717.mms"
+    }
+    parameters: {
+      integerParameter: 24178
+    }
+    parameters: {
+      blobParameter: "z\x1f<\xb4\x17#\x00\xbe\x87\x17\xb3\x89\x1aE6\n\x90\xf7{\xf2\xdeLA\xdbۭ\x03y\x12\x93\xc8\xee"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 4
+    length: 24178
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 5
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 20
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🌅"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5819517879876833738.mms"
+    }
+    parameters: {
+      integerParameter: 14204
+    }
+    parameters: {
+      blobParameter: "ݡ.\xc0\xe1\x1a|rE\xf2\x14\xb9\xf9\xa6\xbc\xdeA:\xedFo\x17\x95\xd2\x18M\x14W\x0e\xde:\xed"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 5
+    length: 14204
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 6
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 21
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤔"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4379564880627289493.mms"
+    }
+    parameters: {
+      integerParameter: 15608
+    }
+    parameters: {
+      blobParameter: "\xa4\xdb\x0e>\xae٥X0\xe8\x8f\x1d5pp\xec#\xa1Ii\x08\x16V\x88\xbd\x0c\x1b\xc4\xd30J5"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 6
+    length: 15608
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 7
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 18
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🙏"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker1073514239766292169.mms"
+    }
+    parameters: {
+      integerParameter: 19738
+    }
+    parameters: {
+      blobParameter: "\xf4\xf4ڜ\" U\x05b\xae R\xe3\x91-\x9c4\x9e\xa1\xbf\x01\x90$aО\xa1\xf5\x9a\xfe5t"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 7
+    length: 19738
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 8
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 10
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤤"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker6528331041461550384.mms"
+    }
+    parameters: {
+      integerParameter: 19052
+    }
+    parameters: {
+      blobParameter: "\x7f\x8f\x12\x7fmNs巻\xafB\xe0b\xd1\x0c\x835T\x1e\x8379tM\xae\x03[\x0f\x02`J"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 8
+    length: 19052
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 9
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 23
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "✍️"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8662995285888837575.mms"
+    }
+    parameters: {
+      integerParameter: 16986
+    }
+    parameters: {
+      blobParameter: "\x8d\x00k\xbd/\xfcE \xd8\xed\x11\xefӨ\x84\xe9\x95b\xffc78\xac\xad\xb84\xbf^D\xf6\x8d\x08"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 9
+    length: 16986
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 10
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 24
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😣"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker959748990119397274.mms"
+    }
+    parameters: {
+      integerParameter: 19948
+    }
+    parameters: {
+      blobParameter: "\x1f\xf1\xc7k\x01\x8d\x0b,@v\x12\xc5$\x82\xdb\xf1G\x87\xbf)\x81aE\x91Q\x82x+\x02\xd0L\x8a"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 10
+    length: 19948
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 11
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😭"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3986203900599327437.mms"
+    }
+    parameters: {
+      integerParameter: 21000
+    }
+    parameters: {
+      blobParameter: "\xf3䈤,Z\xfb\x1c\xcf\x11\x90[-[\x05:\x11\xf2hv>\xac\xffU\x17T6A\x95 \x90\xea"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 11
+    length: 21000
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 12
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🎉"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker944944976957761908.mms"
+    }
+    parameters: {
+      integerParameter: 25060
+    }
+    parameters: {
+      blobParameter: "\x9a9K\xf6\xe0LJ\xf2\x14\xa1\xfa\xf7J+\x9c\xe27\x18jirVvz\x92W\x15\xabЋG\x1b"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 12
+    length: 25060
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 13
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 6
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🌹"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker2981293513040789386.mms"
+    }
+    parameters: {
+      integerParameter: 21424
+    }
+    parameters: {
+      blobParameter: "\x06\xeb\x17\xe2j\xa3©/״/\x9f\xbf\x01\xceG.\xfe\xb2\xbb\x81\xe06JOus\x91\x07\xcd\x0c"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 13
+    length: 21424
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 14
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 13
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "❤️"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7809887938963343301.mms"
+    }
+    parameters: {
+      integerParameter: 21234
+    }
+    parameters: {
+      blobParameter: "\xdbX\xbf3\x90\xe8\x83\x14Of\xcd`\x81%ͼF\x88\"\xcc(\x88^\n\x01\xe6\x00\xcf8\x9e\xa2\x1c"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 14
+    length: 21234
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 15
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 4
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😠"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3833965574595119328.mms"
+    }
+    parameters: {
+      integerParameter: 17900
+    }
+    parameters: {
+      blobParameter: "\xc0;\x0f@1Hn\xc3\xdft+\x84Vg)\x8e\x1b\xe8EF\xf3\x91\xc8\xd0\\\xd0\xdd*\x96cGN"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 15
+    length: 17900
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 16
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤣"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker6414140973173480174.mms"
+    }
+    parameters: {
+      integerParameter: 25730
+    }
+    parameters: {
+      blobParameter: "\x95Y\x97\xbe\xef4\xd4.\x98\xe8\"\xad\xfd\xb2\u009b\xaa\xd9\xe6\x85\xfe\xe8\x86\n4<I_\xa4o\x8aW"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 16
+    length: 25730
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 17
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 5
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "👋"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker2700010275332474028.mms"
+    }
+    parameters: {
+      integerParameter: 16694
+    }
+    parameters: {
+      blobParameter: "\x8a\xe8\x12C\xf3\x84\x81\xe3\xc2'\x9dk\xc9\xc0B\xc0\xa9֋\x14\xff\xa0\xbc\xd1\x07\xc8Iw\xaf\xa8zQ"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 17
+    length: 16694
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 18
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 16
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🎵"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker9020368885342902979.mms"
+    }
+    parameters: {
+      integerParameter: 26254
+    }
+    parameters: {
+      blobParameter: "\xe5\xc5\xccNP\xb0>\xd5t`xL\xa7]\xc1\xb3\x0f\x14e\xd5\xcfR\x1b\x05\xe4ހ\x12\xd7B\x970"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 18
+    length: 26254
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 19
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "✨"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3794326609397739341.mms"
+    }
+    parameters: {
+      integerParameter: 23072
+    }
+    parameters: {
+      blobParameter: "d\xc4*\xa6GJ8w\xa8,\x94Nf\xc3\x04ROfܚ+\xc4\xe8(\xb3\x0eYHC\xfa\xec\xdf"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 19
+    length: 23072
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 20
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 11
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "☕"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4918657002943298006.mms"
+    }
+    parameters: {
+      integerParameter: 17498
+    }
+    parameters: {
+      blobParameter: "\xa6\x15B\xb6\x82\xce\xfa9/B\xb4,\xf2\xe4\x88\x1a\x187\x0c!X\xf4\xf8\x94\xc3X\x17G\xf4\xae\x06M"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 20
+    length: 17498
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 21
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 19
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😴"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7381926964306442898.mms"
+    }
+    parameters: {
+      integerParameter: 17822
+    }
+    parameters: {
+      blobParameter: "\xc3\xd2V3c\xbd\xc3\tVfꐢ\x9d\xde}\xe2\x9a>\x04\xa6<\xfe\x0cژ^I\xa9,\x04\xb0"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 21
+    length: 17822
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 22
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 15
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "💦"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7049152974050441462.mms"
+    }
+    parameters: {
+      integerParameter: 19918
+    }
+    parameters: {
+      blobParameter: "@\x9e\x15\xe0r\x90\x1e\xf8\xe1~+00\x87(\x14\x9e;\xe6\xf6\xed \xfb\xd7p\xd1\x10\xd7\x03\xdf<\xf8"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 22
+    length: 19918
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 23
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 12
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😕"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker1857553147616423557.mms"
+    }
+    parameters: {
+      integerParameter: 21270
+    }
+    parameters: {
+      blobParameter: "Wڇ\xfa\xce'\xc0\xc8\xe3\xd8f\xd2<<\xb3\x94\xd3Ȏ\xcd\xdb\x11$\xa9\x1b\xed\xa0\xdf1\x12GF"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 23
+    length: 21270
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 24
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 17
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😅"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5816135404362407569.mms"
+    }
+    parameters: {
+      integerParameter: 22640
+    }
+    parameters: {
+      blobParameter: "\xe9KR\xbe\xddW\xd7_\xa3\xfbK\xb1\x14\x91@V̐D\x0c\xa7\xe3\x84\xc4)\xbeJ\xc2Ot3\xb9"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 24
+    length: 22640
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 25
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 22
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😦"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker614532479958407916.mms"
+    }
+    parameters: {
+      integerParameter: 13586
+    }
+    parameters: {
+      blobParameter: "\xdfV\xe8\x0c\x9f\x11\xf5`W\xdaư\x9b\x960\x10r\x08\xab\xe9\x91)|\xe9N!\xbc\x95\xa9/\xa0g"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 25
+    length: 13586
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 26
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 14
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "💬"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8919994558490946006.mms"
+    }
+    parameters: {
+      integerParameter: 14404
+    }
+    parameters: {
+      blobParameter: "/R\x8f.N\x88\xcd+\xb2/\xbbY\x11\x13\x8by8\x835M\xc8\xec\xa7\x17\xc6Z'\xf7Nԑy"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 26
+    length: 14404
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 27
+    }
+    parameters: {
+      stringParamter: "fb535407d2f6497ec074df8b9c51dd1d"
+    }
+    parameters: {
+      stringParamter: "17e971c134035622781d2ee249e6473b774583750b68c11bb82b7509c68b6dfd"
+    }
+    parameters: {
+      stringParamter: "Zozo the French Bulldog"
+    }
+    parameters: {
+      stringParamter: "Arrow Bowie"
+    }
+    parameters: {
+      integerParameter: 7
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😔"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8809503620245321871.mms"
+    }
+    parameters: {
+      integerParameter: 25568
+    }
+    parameters: {
+      blobParameter: "핹\xa1\x81ʮL`\n\x89B؃\x8a\"\xb5r\xc1s\xcb\xc8˕\xba\xcbf\x88Θ\x87\x87"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 27
+    length: 25568
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 28
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7907645971049806638.mms"
+    }
+    parameters: {
+      integerParameter: 96702
+    }
+    parameters: {
+      blobParameter: "\\I\xee\xad\x14j\xd6yڼҟ\xf3\tM\x82\x07\xe3\x0e\xadW\xb3UW\xe5\xc3\xf1n\xa0\xd5b\xdc"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 28
+    length: 96702
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 29
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 24
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7061629176454127495.mms"
+    }
+    parameters: {
+      integerParameter: 23368
+    }
+    parameters: {
+      blobParameter: "H\xac[\xfc\xe9Ŋ\x8f\xac\xa6s[\x8a5>\xf9\xf4?\xaca&m\xf2pB\xd6ȩ\xc3_\x0b\x86"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 29
+    length: 23368
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 30
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤔"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5390957435162173656.mms"
+    }
+    parameters: {
+      integerParameter: 83768
+    }
+    parameters: {
+      blobParameter: "\xf8ڴ\x94\x8c\nQ\xfctf\xcaԮ\xd4u\xa8\x85^\xf2\xddE\x18\x9d\x80_7\xf3\x0c\x1c\x05\x11u"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 30
+    length: 83768
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 31
+    }
+    parameters: {
+      stringParamter: "cca32f5b905208b7d0f1e17f23fdc185"
+    }
+    parameters: {
+      stringParamter: "8bf8e95f7a45bdeafe0c8f5b002ef01ab95b8f1b5baac4019ccd6b6be0b1837a"
+    }
+    parameters: {
+      stringParamter: "Swoon / Faces"
+    }
+    parameters: {
+      stringParamter: "Swoon"
+    }
+    parameters: {
+      integerParameter: 89
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4849502728904763460.mms"
+    }
+    parameters: {
+      integerParameter: 69968
+    }
+    parameters: {
+      blobParameter: "\x1d\xff\xfa֫jpW\xeaP'\x04\xa3V\xfe\xfd\xb1A\x89\xb9\x97\xe0\r\x15]2\x0e\x1d\x15\xae\x14*"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 31
+    length: 69968
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 32
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 16
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🙅"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3022794158891783916.mms"
+    }
+    parameters: {
+      integerParameter: 57808
+    }
+    parameters: {
+      blobParameter: "(\x9dƠC:r\xa9\x8d*\xebnO\xae\xc5\xffm\xcf\x12xL+\x82\x9e\xff\t\xd5\n\x87\xee\rb"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 32
+    length: 57808
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 33
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 15
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "💃"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8852483360151106336.mms"
+    }
+    parameters: {
+      integerParameter: 103861
+    }
+    parameters: {
+      blobParameter: "9\x8bń\xed\x87\xc4W\xf7\xeeE\x12\xce}yx@\x8a\xb8\xf4G\xc7n\xb3\x95\xd9\xee\x1b_Y\x1b\xcf"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 33
+    length: 103861
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 34
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 22
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤯"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4694659261484265580.mms"
+    }
+    parameters: {
+      integerParameter: 90724
+    }
+    parameters: {
+      blobParameter: "\xe6\x12\xceh싳\x82\xafv\xa0-\xc5\x07\xe5bРw\xe2\xc20\xa9{\x19\x16\"\x9d\x06\xff\x02`"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 34
+    length: 90724
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 35
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😢"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8700310828896993774.mms"
+    }
+    parameters: {
+      integerParameter: 92759
+    }
+    parameters: {
+      blobParameter: "B\x86-\xceL҅HA\xc0\x10\xd5j\x98S\xee\x19^\x15(\xd3\x0f\x9b\xf8\xd3\xebi\x9e\xcd(\xdf\xd9"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 35
+    length: 92759
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 36
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 4
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "💏"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3974800972146218531.mms"
+    }
+    parameters: {
+      integerParameter: 102855
+    }
+    parameters: {
+      blobParameter: "/H7\x05W\x8bAm\x90<\x1e\xef鰎X/\x0b\"\xa8Fg^\xaa\xb2\x1a\x84\xc0\xb7\xeb\xa8\xc5"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 36
+    length: 102855
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 37
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 5
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "💔"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3569270763622869623.mms"
+    }
+    parameters: {
+      integerParameter: 76314
+    }
+    parameters: {
+      blobParameter: "\xb6\x1c\xa5\xedkk\xb8\xab\xe5\x84%\xb9:E\x9a\x0e\xe6lt\x07\xd5X\xcaܕ.,<\x94\xe5\x03("
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 37
+    length: 76314
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 38
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 13
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😉"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8312131531607357157.mms"
+    }
+    parameters: {
+      integerParameter: 61444
+    }
+    parameters: {
+      blobParameter: "\\L\x0cQs\x7fd\x92\xbb\x9dVǄ\xad\xe9sa\x0fJ\xf2\x1d\x1f\x85\x9aė\x0bX\xcaR\xa5\x9e"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 38
+    length: 61444
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 39
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 10
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "👍"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker6500004936850489734.mms"
+    }
+    parameters: {
+      integerParameter: 60136
+    }
+    parameters: {
+      blobParameter: "r\x01~\xa0\xe9c\xc5{\xfdA+\xcd\x03le\xcbb\x04g\xab]&j\xc7|%\x94\xdb\x0f,A\xe9"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 39
+    length: 60136
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 40
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 11
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😴"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5636360429940202861.mms"
+    }
+    parameters: {
+      integerParameter: 143795
+    }
+    parameters: {
+      blobParameter: "G\xe8\x9de\xef\xc3Δ\x10\x0c@i(@,ƜeƬ\x07\xad`\xaa3\x15\xec:Z8i\x90"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 40
+    length: 143795
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 41
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 20
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🍸"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker906892816097972804.mms"
+    }
+    parameters: {
+      integerParameter: 117679
+    }
+    parameters: {
+      blobParameter: "\xcfm\x1d\xc3w\x92\xe0o\xa9`\xf2\xf8\x94?\x96l\xbd-\x14\n[\x14\x83@4\x91\xdbc\xc5'\xbd\x90"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 41
+    length: 117679
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 42
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "👌"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4976165250896011982.mms"
+    }
+    parameters: {
+      integerParameter: 96702
+    }
+    parameters: {
+      blobParameter: "_-e\xce\xe0>\xa9\x0b\xb0<\xcf־\xab\x1eA\x1eI\xae\x90\xa1\xfdQ\xe2,\xcaē\x84\xa3W\x1d"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 42
+    length: 96702
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 43
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 19
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🥰"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3204178215329390739.mms"
+    }
+    parameters: {
+      integerParameter: 131038
+    }
+    parameters: {
+      blobParameter: "\xa5\xf8r\xa2f\xe1F'[K\xd2Ũ߮\xb3;\xf7'\xe2\x02\n'\n\xb0\xaf\xd21lS\xbb\xc3"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 43
+    length: 131038
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 44
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 9
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤙"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker151959501741875643.mms"
+    }
+    parameters: {
+      integerParameter: 92820
+    }
+    parameters: {
+      blobParameter: "`\x9cg|\xeapi\x81\xb1S&\xcb\x19\xf3\xff\xe0\xcbm\xc0^\xa3\xf6j\xd28ƫڠ\xf2\xa2\x8c"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 44
+    length: 92820
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 45
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 8
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤫"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5913411676412335479.mms"
+    }
+    parameters: {
+      integerParameter: 120539
+    }
+    parameters: {
+      blobParameter: "\r\x89(\x8fC[W\xc8c\x97Q\xea\xf8D\x04\xc8Vty\xe7\xa7 h\x04\xf8\x8a\xae\x16׽D{"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 45
+    length: 120539
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 46
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 21
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😱"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7848187107872974015.mms"
+    }
+    parameters: {
+      integerParameter: 109883
+    }
+    parameters: {
+      blobParameter: "f!\x97\x17\x01\xad}j\x1a\xcf.w_\xcb\x1e\xfe>\x12d\x94X\xb1\xfc`\xe05%p\xae\x84\xc3{"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 46
+    length: 109883
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 47
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 17
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🖕"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4484571665272900740.mms"
+    }
+    parameters: {
+      integerParameter: 51765
+    }
+    parameters: {
+      blobParameter: "_\x89k\xb4\xae\xaa\xc2L\xfc\xb0;\xdc\xdaQ\xb3\xd8U\x80\xc4eD\x95\x91` \x86\xd8\x07\x8e\xf5\xf5\x84"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 47
+    length: 51765
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 48
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 6
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "☔"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker1575668647048138777.mms"
+    }
+    parameters: {
+      integerParameter: 66588
+    }
+    parameters: {
+      blobParameter: "\xd7\xc0\x06\x9a\x17\x06N\xa7|G,\xe9\xd4Nk\xe5\x9b\x11\xf4m\x8d\x11\x03܃tFqq7\x02~"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 48
+    length: 66588
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 49
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 12
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🏳️‍🌈"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3136620855101265643.mms"
+    }
+    parameters: {
+      integerParameter: 76141
+    }
+    parameters: {
+      blobParameter: "S\x9a\x162Rij\xa0\x8c9=r\xac>\xe8\xa2\\\x88\xe1\xb4;0a\xb0\x8c\xb4ٚ\xd0T>\xe4"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 49
+    length: 76141
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 50
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 23
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤩"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker6772042020609186598.mms"
+    }
+    parameters: {
+      integerParameter: 180526
+    }
+    parameters: {
+      blobParameter: "\x8f\xac\xf5\xfe\xb1Km\xc5`E9\xc9\xc1\xa0X\x8eX2 \x1d\x90\xfe\xf7!':T\xad\t\xa8+9"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 50
+    length: 180526
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 51
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 14
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤪"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker2404264896794023411.mms"
+    }
+    parameters: {
+      integerParameter: 147108
+    }
+    parameters: {
+      blobParameter: "f\xb1IU\x1d\xb3_\x8dC\xe5\x19\xff\xe9l\x89k\x1cmꥅ\xc46`\xf2\x07\x04x\xdfO\xbb="
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 51
+    length: 147108
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 52
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "👀"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7548315775530507662.mms"
+    }
+    parameters: {
+      integerParameter: 117347
+    }
+    parameters: {
+      blobParameter: "\xde\x1c\xafI\x0f\xb5Q\xff\x01\x00\xb9\xa4\xaf\xe3\xf1Smvƥ\x87]\x17e\xf8\xf8\xa8\xb2:\xd6\"\xb0"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 52
+    length: 117347
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 53
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 7
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "☺️"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker2025149751336495958.mms"
+    }
+    parameters: {
+      integerParameter: 121183
+    }
+    parameters: {
+      blobParameter: "\xbe\xd5\xcf\xe6\x02\x92\x03\x98h\xc4B|\x00~Q\x81/\xaaA\xb8\xd6\x01\xbdi\x1fe\x12\x0b\xdad\xc4>"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 53
+    length: 121183
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 54
+    }
+    parameters: {
+      stringParamter: "cfc50156556893ef9838069d3890fe49"
+    }
+    parameters: {
+      stringParamter: "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b"
+    }
+    parameters: {
+      stringParamter: "Day by Day"
+    }
+    parameters: {
+      stringParamter: "Miguel Ángel Camprubí"
+    }
+    parameters: {
+      integerParameter: 18
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "👍"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3786503582189185105.mms"
+    }
+    parameters: {
+      integerParameter: 49718
+    }
+    parameters: {
+      blobParameter: "\xa9G\x98ߣ\x01\xffc\x97\xbc\xb0\x13h\xfb\xf3\x0b\xdc\xeaz<\x8b㐊\"\x9a٪\x03\x82-e"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 54
+    length: 49718
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 55
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 8
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "💬"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7809293836765167873.mms"
+    }
+    parameters: {
+      integerParameter: 15210
+    }
+    parameters: {
+      blobParameter: "\xf6\xf1\x1a\x08\xf2\x8d\x1a\xf1\xa2+\x1a\xc8\x1e\x18\x15\xb8Q\\\x9b\xbc\xc5)\x98ۡDW΋\xf6<\xab"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 55
+    length: 15210
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 56
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 14
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🎉"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker6074442061863346860.mms"
+    }
+    parameters: {
+      integerParameter: 38394
+    }
+    parameters: {
+      blobParameter: "xb\"\x9a\x13Ķy*W\x8ap\xab\xc0\x83>\xee\x9b \xa1\xe10\xfbЦ^S\x1d\xd9\xed\xd5\x1e"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 56
+    length: 38394
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 57
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 4
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😴"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3316571482865049240.mms"
+    }
+    parameters: {
+      integerParameter: 29450
+    }
+    parameters: {
+      blobParameter: "\x07\xd6@Ͼ\xfe[\xbc)2\x94\x80ҷ\xe02v5O\xca\xf6\x9d\xd3H\xa3\xd9\xd8Al]\x1d\xdc"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 57
+    length: 29450
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 58
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 6
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😎"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7399371855312496349.mms"
+    }
+    parameters: {
+      integerParameter: 27360
+    }
+    parameters: {
+      blobParameter: "n\xf7\xa8?C\x9e\xd02\xb3\x01 \xbb]N\xfc4\xc1\xba)W\x1dK\x8f\xc8\xeb5\xe1$\x1d丼"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 58
+    length: 27360
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 59
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 11
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😾"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8026896220911001023.mms"
+    }
+    parameters: {
+      integerParameter: 14152
+    }
+    parameters: {
+      blobParameter: "I\xd3咸;\x0e۶a\x14\x82\xb0l\xd3\xe6^j\xf7\x0eP\x97\x9d\x03\xf4L=\x1d\xbc\xa5\x08\x81"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 59
+    length: 14152
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 60
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 9
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🙏"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8331937406363364518.mms"
+    }
+    parameters: {
+      integerParameter: 26972
+    }
+    parameters: {
+      blobParameter: "\xca\x0c\x07\xb3\xa1\x84\xf9\xab\xf9,\x1eZ\xc1T\x85$\xa1\xb5\x12\xb0UT:\xbc\xf6Ɯ\x05\x8f\x1c \x9b"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 60
+    length: 26972
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 61
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 12
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤔"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker6239328307311627782.mms"
+    }
+    parameters: {
+      integerParameter: 19968
+    }
+    parameters: {
+      blobParameter: "\x86U\x1a#\x81\xf9\xbf\x18\x01]\xd1\xd6\xc1=\xdf\x05w\x9e\x94\xe0\xf1\xad\xf3*ˮ\xed\xac>y\x11\x18"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 61
+    length: 19968
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 62
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 15
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😿"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5864149483107233722.mms"
+    }
+    parameters: {
+      integerParameter: 36190
+    }
+    parameters: {
+      blobParameter: "\xd1\xe2\x17\x9a\x84Ȃ\x05\x05գ\xd0~\xfe56\xf6\x91\xc4\x190\xe7mf~L΀\x108\xa6\t"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 62
+    length: 36190
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 63
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "👍"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5072330220496346169.mms"
+    }
+    parameters: {
+      integerParameter: 21434
+    }
+    parameters: {
+      blobParameter: "\x7f\xe6\x9b\xd8q\x8eB*tуa\x08\x92\xb0#\x19\x7fd\nv\xf6\xfa\xbe\x9b\xf0\xf9<t\xefzr"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 63
+    length: 21434
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 64
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😔"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4622699184682985790.mms"
+    }
+    parameters: {
+      integerParameter: 14352
+    }
+    parameters: {
+      blobParameter: "1\n\x85\x06\x89\xc5\x1ei\x17N{{n0˼&;\x9a\x9a\x86\x94|\x11\x13\xce]pU\xf7\x12\xa0"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 64
+    length: 14352
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 65
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 13
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🏖️"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker47257257477931790.mms"
+    }
+    parameters: {
+      integerParameter: 30576
+    }
+    parameters: {
+      blobParameter: "]6b\x83\x12\x94x\xc2D\xf3_+N\n\xc1\xf3ξ\x9d\x1e\xdd$Vs\xcc\xf3\x99\xf1l`\xca\xd9"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 65
+    length: 30576
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 66
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 10
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🙌"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker1596459878706872800.mms"
+    }
+    parameters: {
+      integerParameter: 27670
+    }
+    parameters: {
+      blobParameter: "\xa5\x14\xba\xe8fӌȰ2\x82\xd4\xe7>\xbd\x13i7\xb0\xaeF\x12\x08\xf8|\xb4\xe5\xe8\x90\xfe\xf1\x93"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 66
+    length: 27670
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 67
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 7
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😡"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker2150051818609575973.mms"
+    }
+    parameters: {
+      integerParameter: 25206
+    }
+    parameters: {
+      blobParameter: "x\xb2ɂZȠkB`\xa4\xabV\xd7\x11Ih\x90\xca!|\xb2꧳e\x82\xec\xf6k\xef:"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 67
+    length: 25206
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 68
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 3
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😒"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4792811653222251420.mms"
+    }
+    parameters: {
+      integerParameter: 17216
+    }
+    parameters: {
+      blobParameter: "\xddM4\x1eI\xda#s\x96e\xd6HQ\x80Yg\xed\xb0\x7f\xb4^\xa7\x0b=B\xaf\x1fzqrу"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 68
+    length: 17216
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 69
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤣"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7542094250841355717.mms"
+    }
+    parameters: {
+      integerParameter: 23368
+    }
+    parameters: {
+      blobParameter: "\x95W\x12\xb1\xd8fLFÐ\xba\x9a\xb0%\xac\x18\\\xe9\xd7:\x91_\x19m\xc1\x83\x05\xb4\x95\xcak+"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 69
+    length: 23368
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 70
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 5
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😇"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker5742760982517863414.mms"
+    }
+    parameters: {
+      integerParameter: 23660
+    }
+    parameters: {
+      blobParameter: "\xcc4\x02\xe7\x80Q\xe5Dv2\xbc\xf9Q\x17\xbex\xb3\x14\xa1\x82\xc7\xcb\xe1K\xe8ҝ;\x90H\xfd\xd4"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 70
+    length: 23660
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 71
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 18
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😤"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8880928396936362491.mms"
+    }
+    parameters: {
+      integerParameter: 16446
+    }
+    parameters: {
+      blobParameter: "\n\xab9\x06\xc0\xf8\xc8\xd3\xc3#\xc0\x9e)\xa7\x8e\xa5r\xae\x12\xde\xf6౯\x9d-4w\xf6\xfe\xd0\xe4"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 71
+    length: 16446
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 72
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 16
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😸"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker4986974644516798134.mms"
+    }
+    parameters: {
+      integerParameter: 25066
+    }
+    parameters: {
+      blobParameter: "\xe7<\xaf\x93D\x81\xad\xae\xd0򊁏j*/\x99\x0c4P\xe7\x90Y\xf6zף}~\xd9\xc2A"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 72
+    length: 25066
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 73
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 20
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😠"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker8077726881689995248.mms"
+    }
+    parameters: {
+      integerParameter: 28458
+    }
+    parameters: {
+      blobParameter: "G\x91!\x91k*\x11jPQ\xd75u\xc8o\xb5\xa1\xcf\x03,#!ܷT\xb3\xed\xddY\xc5\xe10"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 73
+    length: 28458
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 74
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 22
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😘"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker7434927702778943569.mms"
+    }
+    parameters: {
+      integerParameter: 21824
+    }
+    parameters: {
+      blobParameter: "K\xd1\xcb\xce:Yb\xc4ba\xd6\x0b]\xd7(\xb3U):\xae\x98\x07\x1c\xd8\xf8c\x9e\x9d\xcf\t\xbdD"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 74
+    length: 21824
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 75
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 23
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😫"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker3437939583831363325.mms"
+    }
+    parameters: {
+      integerParameter: 26736
+    }
+    parameters: {
+      blobParameter: "\xfc:\x1d\xa9\x8f})\xb4\x83UH\xd4K\x90\xd2p\x1f>꛳s\x10[\x8e.K\xf3>\x81\x16W"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 75
+    length: 26736
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 76
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 19
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "🤒"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker97497034133081394.mms"
+    }
+    parameters: {
+      integerParameter: 30408
+    }
+    parameters: {
+      blobParameter: "\x1b!M\xa4O\x88\xa99ѥ\x1fy\xd1\xf2\x7f\xdfkw6\xa4\x7fIA\xeb\x1a\xd5\xceYT\x04\xa0x"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 76
+    length: 30408
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 77
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 17
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😻"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker1471126768535659710.mms"
+    }
+    parameters: {
+      integerParameter: 21684
+    }
+    parameters: {
+      blobParameter: "\x02l\x81ԃCă:\xd8\x01(\xb4\x0e\x07\xac\xc39\xde\r\x13\xd7\xd2XYn\xb5\xb0\xcb\xe7\xbf\xda"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 77
+    length: 21684
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO sticker VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 78
+    }
+    parameters: {
+      stringParamter: "9acc9e8aba563d26a4994e69263e3b25"
+    }
+    parameters: {
+      stringParamter: "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12"
+    }
+    parameters: {
+      stringParamter: "Bandit the Cat"
+    }
+    parameters: {
+      stringParamter: "Agnes Lee"
+    }
+    parameters: {
+      integerParameter: 21
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      stringParamter: "😥"
+    }
+    parameters: {
+      stringParamter: ""
+    }
+    parameters: {
+      nullparameter: true
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "/data/user/0/org.thoughtcrime.securesms/app_stickers/sticker2707056464487742407.mms"
+    }
+    parameters: {
+      integerParameter: 23290
+    }
+    parameters: {
+      blobParameter: "\xe8\xcc\xe6}\xa1\xd6\xed,\xb0\xe3G\x8b_\xf6M\xc7\x0bT\xc0u\xcd\xcf?\x89\xfe\x1e\x0b\x97%U\xd7\x18"
+    }
+  }
+}
+frames: {
+  sticker: {
+    rowId: 78
+    length: 23290
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO identities VALUES (?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      stringParamter: "756d9b45-5485-45f0-b629-e7814ee58db8"
+    }
+    parameters: {
+      stringParamter: "eJOWFpCQxMR3sUr7zH6gpEn4PDHK70mCT4dYpN0xa2Q="
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1641013200000
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1
+    }
+  }
+}
+frames: {
+  statement: {
+    statement: "INSERT INTO identities VALUES (?,?,?,?,?,?,?)"
+    parameters: {
+      integerParameter: 2
+    }
+    parameters: {
+      stringParamter: "95e04140-2304-4cf0-9f80-bc056522c9e2"
+    }
+    parameters: {
+      stringParamter: "0CBiRRFxzMm8+l9+3z/sER5EIa/RtKEsv0XPJLu9ljc="
+    }
+    parameters: {
+      integerParameter: 1
+    }
+    parameters: {
+      integerParameter: 1641013200000
+    }
+    parameters: {
+      integerParameter: 0
+    }
+    parameters: {
+      integerParameter: 1
+    }
+  }
+}
+frames: {
+  preference: {
+    file: "org.thoughtcrime.securesms_preferences"
+    key: "pref_read_receipts"
+    booleanValue: true
+  }
+}
+frames: {
+  preference: {
+    file: "org.thoughtcrime.securesms_preferences"
+    key: "pref_typing_indicators"
+    booleanValue: true
+  }
+}
+frames: {
+  preference: {
+    file: "org.thoughtcrime.securesms_preferences"
+    key: "pref_show_unidentifed_delivery_indicators"
+    booleanValue: false
+  }
+}
+frames: {
+  keyValue: {
+    key: "account.aci_identity_public_key"
+    blobValue: "0000000000000000000000000000000000"
+  }
+}
+frames: {
+  keyValue: {
+    key: "account.aci_identity_private_key"
+    blobValue: "0000000000000000000000000000000"
+  }
+}
+frames: {
+  keyValue: {
+    key: "account.pni_identity_public_key"
+    blobValue: "00000000000000000000000000000000"
+  }
+}
+frames: {
+  keyValue: {
+    key: "account.pni_identity_private_key"
+    blobValue: "0000000000000000000000000000000"
+  }
+}
+frames: {
+  keyValue: {
+    key: "emojiPref__reactions_list"
+    stringValue: "❤️,👍,🤬,😂,🤷‍♂️,👀"
+  }
+}
+frames: {
+  keyValue: {
+    key: "settings.link_previews"
+    booleanValue: true
+  }
+}
+frames: {
+  keyValue: {
+    key: "settings.prefer.system.contact.photos"
+    booleanValue: true
+  }
+}
+frames: {
+  keyValue: {
+    key: "settings.backups.enabled"
+    booleanValue: true
+  }
+}
+frames: {
+  keyValue: {
+    key: "settings.universal.expire.timer"
+    integerValue: 0
+  }
+}
+frames: {
+  keyValue: {
+    key: "phoneNumberPrivacy.sharingMode"
+    integerValue: 0
+  }
+}
+frames: {
+  keyValue: {
+    key: "phoneNumberPrivacy.listingMode"
+    integerValue: 0
+  }
+}
+frames: {
+  keyValue: {
+    key: "mob_payments_enabled"
+    booleanValue: false
+  }
+}
+frames: {
+  keyValue: {
+    key: "donation.last.successful.ping"
+    longValue: 1641013200000
+  }
+}
+frames: {
+  keyValue: {
+    key: "releasechannel.recipient_id"
+    stringValue: "291"
+  }
+}
+frames: {
+  avatar: {
+    recipientId: "291"
+    length: 33144
+  }
+}
+frames: {
+  avatar: {
+    recipientId: "1"
+    length: 124787
+  }
+}
+frames: {
+  end: true
+}

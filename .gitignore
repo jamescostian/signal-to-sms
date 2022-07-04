@@ -1,0 +1,14 @@
+# Don't check in the binary
+signal-to-sms
+
+# Try to avoid allowing users to commit any secrets (even phone numbers or backup passwords) inadvertently
+.vscode/launch.json
+*.backup*
+*.xml
+*.sqlite
+*.prototext
+restored/
+backups/
+
+# Allow testdata though! These are cleaned up, and don't have personal info
+!internal/testdata/**

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package signal;
+
+option go_package = "github.com/jamescostian/signal-to-sms/utils/proto/signal;signal";
+
+import "backups.proto";
+
+message BackupFrames {
+    repeated BackupFrame frames = 1;
+}

@@ -1,0 +1,7 @@
+{
+	"go.testFlags": ["-v", "-tags=deterministic_output"],
+	"go.testTimeout": "3s",
+	"protoc": {
+		"options": ["--proto_path=utils/proto/signal"]
+	}
+}
