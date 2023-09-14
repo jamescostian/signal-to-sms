@@ -1,7 +1,7 @@
 # signal-to-sms
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/jamescostian/signal-to-sms)](https://goreportcard.com/report/github.com/jamescostian/signal-to-sms)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/jamescostian/signal-to-sms/check)](https://github.com/jamescostian/signal-to-sms/actions?query=workflow%3Acheck)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jamescostian/signal-to-sms/check.yaml?branch=main)](https://github.com/jamescostian/signal-to-sms/actions?query=workflow%3Acheck)
 [![Latest version](https://img.shields.io/github/v/release/jamescostian/signal-to-sms)](https://github.com/jamescostian/signal-to-sms/releases)
 
 `signal-to-sms` allows decrypting and converting [Signal](https://www.signal.org/) for Android backups. Combined with other tools, it can let you move your Signal chat messages to your SMS app, **including iMessage on iPhones**.
